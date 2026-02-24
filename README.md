@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="docs/prism-cover.png" alt="PRISM Cover" width="900"/>
-</p>
+
 
 <h1 align="center">PRISM</h1>
 
