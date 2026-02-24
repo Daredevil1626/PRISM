@@ -189,17 +189,27 @@ PRISM provides a multi-tab desktop interface:
 
 ---
 
-## Installation
+Installation
 
-```bash
+Create and activate a virtual environment:
+
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install psutil matplotlib numpyLinux Notes
+
+Install required dependencies:
+
+pip install psutil matplotlib numpy
+Linux Notes
 
 Some Linux distributions do not bundle Tkinter by default.
 
+Install Tkinter using:
+
 sudo apt-get install python3-tk
 Running PRISM
+
+Start the application using:
+
 python Prism.py
 
 The application launches as a desktop GUI with multiple analytical tabs.
@@ -209,54 +219,64 @@ Reports & Data Export
 PRISM supports structured data export for downstream analysis and auditing.
 
 Full Analysis Export (JSON)
-Complete snapshot of file analysis, runtime metrics, energy data, and trust scores.
+
+Complete snapshot of file analysis
+
+Runtime metrics
+
+Energy data
+
+Trust scores
 
 Raw Metrics Export
-Low-level analysis data suitable for research, validation, or external tooling.
+
+Low-level analysis data suitable for:
+
+research
+
+validation
+
+external tooling
 
 All exports are designed for reproducibility, traceability, and auditability.
 
 Design Boundaries & Limitations
 
-PRISM intentionally prioritizes safety, explainability, and performance over exhaustive depth.
-
-Known constraints include:
+PRISM intentionally prioritizes safety, explainability, and performance.
 
 Disassembly covers a limited opcode subset
 
 CFG and function detection are approximate
 
-Energy and CO₂ values are heuristic estimates, not sensor readings
+Energy and CO₂ values are heuristic estimates
 
 Import detection is string-based
 
 Packed or encrypted samples may evade deep inspection
 
-These are deliberate engineering trade-offs, not oversights.
+These constraints are intentional engineering trade-offs, not oversights.
 
 Ethics & Responsible Use
 
-PRISM is a heuristic transparency tool, not a definitive authority.
+PRISM is a heuristic transparency tool.
 
-False positives and false negatives are possible
+False positives and negatives are possible
 
-Results should not be treated as final malware verdicts
+It should not be the sole authority for malware classification
 
-Always validate findings with professional security tooling
+Always validate findings with professional tooling
 
-Use responsibly and in compliance with local laws and ethical standards
+Use responsibly and within legal and ethical boundaries
 
 Roadmap
 
-Planned and exploratory enhancements include:
-
-Expanded opcode and instruction coverage
+Expanded opcode coverage
 
 Visual Control Flow Graph (CFG) rendering
 
-Plugin-based detection framework (YARA, signature engines)
+Plugin system (YARA, signature engines)
 
-Deeper PE / ELF parsing (imports, exports, sections)
+Deeper PE / ELF parsing
 
 Cross-platform packaging (PyInstaller)
 
