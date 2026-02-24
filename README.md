@@ -1,321 +1,266 @@
-PRISM
+<p align="center">
+  <img src="docs/prism-cover.png" alt="PRISM Cover" width="900"/>
+</p>
 
-Enhanced Software Transparency, Reverse Engineering & Green Computing Analyzer
+<h1 align="center">PRISM</h1>
 
-A unified instrument for understanding software trust — structurally, behaviorally, and environmentally.
+<p align="center">
+  <b>Enhanced Software Transparency · Reverse Engineering · Green Computing Intelligence</b>
+</p>
 
-Genesys 2.0 Hackathon
-PRISM Project · GRONIT CO₂ Green Computing Challenge
+<p align="center">
+  A unified instrument for understanding software trust — structurally, behaviorally, and environmentally.
+</p>
 
-What PRISM Is
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.8%2B-blue?style=flat-square"/>
+  <img src="https://img.shields.io/badge/platform-desktop-lightgrey?style=flat-square"/>
+  <img src="https://img.shields.io/badge/gui-tkinter-success?style=flat-square"/>
+  <img src="https://img.shields.io/badge/domain-reverse%20engineering-purple?style=flat-square"/>
+  <img src="https://img.shields.io/badge/green-computing-brightgreen?style=flat-square"/>
+</p>
 
-PRISM is a research-grade desktop analysis system that brings together:
+<p align="center">
+  <i>Genesys 2.0 Hackathon · GRONIT CO₂ Green Computing Challenge</i>
+</p>
 
-static binary transparency analysis
+---
 
-lightweight reverse engineering (disassembly + control-flow modeling)
+## Overview
 
-live system & process monitoring
+**PRISM** is an advanced desktop analysis system designed to make software **legible, explainable, and measurable**.
 
-and energy / CO₂ impact estimation
+Rather than relying on opaque verdicts or signature-only detection, PRISM combines static analysis, lightweight reverse engineering, runtime observation, and environmental impact modeling into a **single, cohesive platform**.
 
-into a single, explainable, GUI-driven tool.
+PRISM does **not execute untrusted code**.  
+It observes, infers, correlates, and scores.
 
-It is designed for situations where:
+---
 
-black-box verdicts are unacceptable
+## Design Philosophy
 
-false positives are costly
+PRISM is built around four non-negotiable principles:
 
-and sustainability is part of software quality, not an afterthought
+- **Transparency over verdicts**
+- **Explainability over black-box scoring**
+- **Context over raw indicators**
+- **Sustainability as a first-class metric**
 
-PRISM does not execute unknown code.
-It observes, measures, and infers.
+No individual heuristic can dominate the system.  
+Every score is bounded, weighted, and traceable.
 
-System Architecture (Conceptual)
+---
 
-PRISM is organized as loosely coupled analytical engines, coordinated by a GUI layer:
+## System Architecture
 
-Static Transparency Engine
+PRISM is composed of loosely coupled analytical engines:
 
-Reverse Engineering Engine
+1. Static Transparency Engine  
+2. Reverse Engineering Engine  
+3. Process & Resource Observer  
+4. Energy & Sustainability Analyzer  
+5. Trust & Scoring Orchestrator  
 
-Process & Resource Observer
+Each engine produces independent signals which are synthesized into a final trust profile.
 
-Energy & Sustainability Analyzer
+---
 
-Trust & Scoring Orchestrator
+## Core Capabilities
 
-Each engine produces bounded, explainable outputs.
-No single signal can dominate the final result.
+### Binary Transparency Analysis
 
-Core Capabilities
-Binary Transparency Analysis
+- File metadata (size, timestamps)
+- Cryptographic hashes (MD5, SHA-256)
+- Shannon entropy analysis with qualitative interpretation
+- Readable string extraction
+- Detection of suspicious indicators:
+  - URLs and IP addresses
+  - registry references
+  - Base64-like encoded payloads
+- Heuristic identification of risky API imports
 
-File metadata: size, timestamps, MD5 / SHA-256
+**Purpose:** Measure opacity and surface latent intent.
 
-Shannon entropy with qualitative assessment
+---
 
-Readable string extraction
+### Binary Format Identification
 
-Detection of suspicious patterns:
+- Lightweight PE / ELF detection
+- Architecture inference
+- Header-level structural awareness
 
-URLs, IP addresses
+**Purpose:** Establish execution context with minimal overhead.
 
-registry references
+---
 
-Base64-like encoded payloads
+### Reverse Engineering (Static & Bounded)
 
-Heuristic detection of risky API imports (string-based)
+- Custom x86/x64 disassembler
+  - intentionally limited opcode coverage for speed and safety
+- Instruction sampling (address, opcode, mnemonic, operands)
+- Control Flow Graph (CFG) construction:
+  - basic block discovery
+  - successor / predecessor mapping
+  - approximate function identification
+- Code pattern statistics:
+  - calls, jumps, returns
+  - stack operations
+  - arithmetic density
 
-Purpose:
+**Purpose:** Understand structural complexity without full emulation.
 
-Measure opacity and surface latent intent.
+---
 
-Binary Format Identification
+### Process & Resource Monitoring
 
-Lightweight PE / ELF detection
+- Live CPU, memory, network, and disk I/O graphs
+- Always-visible mini system dashboard
+- High-risk process prioritization
+- Parent–child process relationship tracking
+- Zombie process detection (explicitly marked safe)
+- Orphan process detection with false-positive suppression
 
-Architecture inference
+High resource usage alone is **never** treated as malicious behavior.
 
-Header-level structural awareness
+---
 
-Purpose:
+### Energy & Green Computing Intelligence
 
-Establish execution context without full parsing overhead.
+PRISM treats **energy consumption as a security-relevant signal**.
 
-Reverse Engineering (Static, Fast, Bounded)
+Features include:
 
-Custom x86/x64 disassembler
+- Device profiling (OS, model, battery state)
+- Heuristic idle power baseline estimation
+- CPU-TDP-based power modeling
+- Real-time power (W) and energy (J / Wh) estimation
+- CO₂ impact calculation using **0.82 g CO₂ / Wh**
+- Energy efficiency and sustainability scoring
+- Theoretical clean-system comparison with savings projection
 
-intentionally limited opcode coverage for speed and safety
+**Purpose:** Quantify the environmental cost of software behavior.
 
-Instruction sampling (address, opcode, mnemonic, operands)
+---
 
-Control Flow Graph (CFG) construction:
+### Trust & Scoring System
 
-basic block identification
-
-successor / predecessor mapping
-
-approximate function discovery
-
-Code pattern statistics:
-
-calls, jumps, returns
-
-stack operations
-
-arithmetic density
-
-Purpose:
-
-Understand structural complexity without full emulation.
-
-Process Transparency & Resource Monitoring
-
-Live CPU, memory, network, and disk I/O graphs
-
-Process list with risk-weighted ordering
-
-Parent–child relationship reconstruction
-
-Zombie process detection (explicitly marked safe)
-
-Orphan process detection with false-positive suppression
-
-Mini always-visible dashboard for system context
-
-Design principle:
-
-High resource usage ≠ malicious behavior.
-
-Context is mandatory.
-
-Energy & Green Computing Intelligence
-
-PRISM treats energy as a first-class analytical signal.
-
-Includes:
-
-Device profiling (OS, model, battery state)
-
-Heuristic idle baseline estimation
-
-CPU-TDP–based power modeling
-
-Real-time power (W) and energy (J / Wh) estimation
-
-CO₂ impact calculation (0.82 g CO₂ / Wh)
-
-Energy efficiency score
-
-Sustainability insights and comparative “clean baseline” framing
-
-Purpose:
-
-Quantify the environmental cost of software behavior.
-
-Trust & Scoring System
-
-PRISM produces a multi-dimensional trust profile, not a binary label.
+PRISM produces a **multi-dimensional trust profile**, not a binary label.
 
 Scores include:
 
-Transparency (entropy, obfuscation)
+- Transparency
+- Security
+- Efficiency
+- Sustainability
+- Reverse Engineering Quality
+- Energy / Green Impact
 
-Security (patterns, APIs, strings)
+All scores are weighted, capped, and explainable.
 
-Efficiency (CPU & memory behavior)
+Final output includes:
+- overall trust score
+- qualitative rating
+- human-readable reasoning
 
-Sustainability (network, disk, energy)
+---
 
-Reverse Engineering Quality
+### Directory Scanner
 
-Energy / Green Impact
+- Fast triage scan of directories (e.g., Downloads)
+- Entropy and keyword-based heuristics
+- Early warning for suspicious artifacts
 
-All scores are:
+Designed for **signal discovery**, not deep forensic analysis.
 
-weighted
+---
 
-capped
+## User Interface
 
-and explainable
+PRISM provides a multi-tab desktop interface:
 
-Final output:
+- **Overview** — file summary, entropy, CFG metrics
+- **Disassembly** — sampled decoded instructions
+- **Control Flow** — function and basic block summaries
+- **Detailed Analysis** — trust score breakdown and reasoning
+- **Process Monitor** — live high-risk processes
+- **Directory Scanner** — folder-level inspection
+- **Resource Metrics** — CPU / memory / network / disk graphs
+- **Energy / Green** — power, efficiency, CO₂ insights
 
-overall trust score
+---
 
-qualitative rating
+## Installation
 
-human-readable reasoning
-
-Directory & File Sweep Mode
-
-Fast scanning of folders (e.g., Downloads)
-
-Entropy + keyword heuristics
-
-Early warning for suspicious artifacts
-
-Designed as a triage pass, not deep analysis
-
-Reports & Data Export
-
-Full analysis export as JSON
-
-Raw metrics export for external research
-
-Designed for:
-
-reproducibility
-
-auditability
-
-downstream processing
-
-Technology Stack
-
-Language: Python 3.8+
-
-GUI: tkinter
-
-System Metrics: psutil
-
-Math & Visualization: numpy, matplotlib
-
-Core Utilities: hashlib, struct, platform, subprocess, pathlib
-
-tkinter ships with most Python builds.
-Some Linux distributions require python3-tk.
-
-Installation
-# Recommended: virtual environment
+```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install psutil matplotlib numpyLinux Notes
 
-pip install psutil matplotlib numpy
-
-Linux (if Tk is missing):
+Some Linux distributions do not bundle Tkinter by default.
 
 sudo apt-get install python3-tk
 Running PRISM
 python Prism.py
 
-The GUI launches with multiple analytical tabs:
+The application launches as a desktop GUI with multiple analytical tabs.
 
-Overview — file summary, entropy, CFG metrics, crypto indicators
+Reports & Data Export
 
-Disassembly — sampled decoded instructions
+PRISM supports structured data export for downstream analysis and auditing.
 
-Control Flow — function & basic-block summaries
+Full Analysis Export (JSON)
+Complete snapshot of file analysis, runtime metrics, energy data, and trust scores.
 
-Detailed Analysis — trust score breakdown and reasoning
+Raw Metrics Export
+Low-level analysis data suitable for research, validation, or external tooling.
 
-Process Monitor — live high-risk processes
-
-Directory Scanner — fast suspicious file sweep
-
-Resource Metrics — CPU / memory / network / disk graphs
-
-Energy / Green — power, efficiency, CO₂ insights
-
-How PRISM Works (Condensed Flow)
-
-Static Read
-File bytes are read safely; hashes and entropy computed.
-
-Structural Inference
-Format detection, disassembly, and CFG synthesis.
-
-Behavioral Context
-Live system metrics and process relationships observed.
-
-Energy Modeling
-Power and CO₂ estimated relative to a clean baseline.
-
-Trust Synthesis
-Weighted, explainable scoring across all dimensions.
+All exports are designed for reproducibility, traceability, and auditability.
 
 Design Boundaries & Limitations
+
+PRISM intentionally prioritizes safety, explainability, and performance over exhaustive depth.
+
+Known constraints include:
 
 Disassembly covers a limited opcode subset
 
 CFG and function detection are approximate
 
-Energy estimates are heuristic, not sensor-grade
+Energy and CO₂ values are heuristic estimates, not sensor readings
 
 Import detection is string-based
 
-Packed / encrypted samples may evade deep inspection
+Packed or encrypted samples may evade deep inspection
 
-These constraints are intentional trade-offs for safety, speed, and clarity.
+These are deliberate engineering trade-offs, not oversights.
 
 Ethics & Responsible Use
 
-PRISM is a heuristic transparency tool.
+PRISM is a heuristic transparency tool, not a definitive authority.
 
-It may produce false positives or negatives
+False positives and false negatives are possible
 
-It should not be the sole authority for malware labeling
+Results should not be treated as final malware verdicts
 
-Always validate findings with professional tooling
+Always validate findings with professional security tooling
 
-Use responsibly and within legal boundaries
+Use responsibly and in compliance with local laws and ethical standards
 
-Roadmap (Indicative)
+Roadmap
 
-Expanded opcode coverage
+Planned and exploratory enhancements include:
 
-Visual CFG rendering
+Expanded opcode and instruction coverage
 
-Plugin system (YARA, signature engines)
+Visual Control Flow Graph (CFG) rendering
 
-Deeper PE / ELF parsing
+Plugin-based detection framework (YARA, signature engines)
+
+Deeper PE / ELF parsing (imports, exports, sections)
 
 Cross-platform packaging (PyInstaller)
 
-Final Note
+Closing Note
 
 PRISM is not an antivirus.
 It is not a sandbox.
