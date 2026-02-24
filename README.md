@@ -1,188 +1,325 @@
+PRISM
 
-# PRISM — Enhanced Software Transparency Analyzer
+Enhanced Software Transparency, Reverse Engineering & Green Computing Analyzer
 
-A comprehensive desktop tool that combines **binary transparency analysis**, **reverse engineering (disassembly + control‑flow graph)**, **resource monitoring**, and **green computing/energy metrics**—all in a single, user‑friendly **Tkinter GUI**.
+A unified instrument for understanding software trust — structurally, behaviorally, and environmentally.
 
-> Genesys 2.0 Hackathon — PRISM Project + GRONIT CO2 Green Computing Challenge
+Genesys 2.0 Hackathon
+PRISM Project · GRONIT CO₂ Green Computing Challenge
 
----
+What PRISM Is
 
-## ✨ Key Features
+PRISM is a research-grade desktop analysis system that brings together:
 
-- **Load & Analyze Binaries**: File info (hashes, size, timestamps), entropy assessment, strings extraction, suspicious patterns (URLs/IPs/registry/base64), and risky API imports.
-- **Binary Format Detection**: Lightweight PE/ELF identification (architecture, sections).
-- **Reverse Engineering**:
-  - Custom **x86/x64 disassembler** (limited but fast) for sample instruction decoding.
-  - **Control Flow Graph (CFG)** construction with basic blocks, successors, and function discovery.
-  - Code pattern stats (calls/jumps/returns/stack ops/arithmetic).
-- **Resource Monitoring**: Live CPU, memory, network, disk I/O charts; always‑visible mini dashboard.
-- **Energy / Green Computing**:
-  - Device profile heuristics (OS, model, battery state, baseline idle watts).
-  - Real‑time **power estimation** and **energy/CO₂** metrics (J, W, Wh → grams CO₂ via 0.82 g/Wh).
-  - **Energy efficiency score** and sustainability impact with practical savings projections.
-- **Trust Scores**: Weighted overall score + breakdown (Transparency, Security, Efficiency, Sustainability, RE Quality, Energy/Green).
-- **Directory Scanner**: Fast pass to flag suspicious files with entropy & keyword heuristics.
-- **Reports & Export**: Save full analysis and metrics as JSON; export raw analysis data.
+static binary transparency analysis
 
----
+lightweight reverse engineering (disassembly + control-flow modeling)
 
-## 🧰 Tech Stack
+live system & process monitoring
 
-- **Python 3.8+**
-- GUI: `tkinter`
-- System/metrics: `psutil`
-- Math/plots: `numpy`, `matplotlib`
-- Misc: `hashlib`, `struct`, `platform`, `subprocess`, `pathlib`
+and energy / CO₂ impact estimation
 
-> Note: `tkinter` comes with most Python distributions. On some Linux distros you may need to install `python3-tk`.
+into a single, explainable, GUI-driven tool.
 
----
+It is designed for situations where:
 
-## 📦 Installation
+black-box verdicts are unacceptable
 
-```bash
-# (Recommended) use a virtual environment
+false positives are costly
+
+and sustainability is part of software quality, not an afterthought
+
+PRISM does not execute unknown code.
+It observes, measures, and infers.
+
+System Architecture (Conceptual)
+
+PRISM is organized as loosely coupled analytical engines, coordinated by a GUI layer:
+
+Static Transparency Engine
+
+Reverse Engineering Engine
+
+Process & Resource Observer
+
+Energy & Sustainability Analyzer
+
+Trust & Scoring Orchestrator
+
+Each engine produces bounded, explainable outputs.
+No single signal can dominate the final result.
+
+Core Capabilities
+Binary Transparency Analysis
+
+File metadata: size, timestamps, MD5 / SHA-256
+
+Shannon entropy with qualitative assessment
+
+Readable string extraction
+
+Detection of suspicious patterns:
+
+URLs, IP addresses
+
+registry references
+
+Base64-like encoded payloads
+
+Heuristic detection of risky API imports (string-based)
+
+Purpose:
+
+Measure opacity and surface latent intent.
+
+Binary Format Identification
+
+Lightweight PE / ELF detection
+
+Architecture inference
+
+Header-level structural awareness
+
+Purpose:
+
+Establish execution context without full parsing overhead.
+
+Reverse Engineering (Static, Fast, Bounded)
+
+Custom x86/x64 disassembler
+
+intentionally limited opcode coverage for speed and safety
+
+Instruction sampling (address, opcode, mnemonic, operands)
+
+Control Flow Graph (CFG) construction:
+
+basic block identification
+
+successor / predecessor mapping
+
+approximate function discovery
+
+Code pattern statistics:
+
+calls, jumps, returns
+
+stack operations
+
+arithmetic density
+
+Purpose:
+
+Understand structural complexity without full emulation.
+
+Process Transparency & Resource Monitoring
+
+Live CPU, memory, network, and disk I/O graphs
+
+Process list with risk-weighted ordering
+
+Parent–child relationship reconstruction
+
+Zombie process detection (explicitly marked safe)
+
+Orphan process detection with false-positive suppression
+
+Mini always-visible dashboard for system context
+
+Design principle:
+
+High resource usage ≠ malicious behavior.
+
+Context is mandatory.
+
+Energy & Green Computing Intelligence
+
+PRISM treats energy as a first-class analytical signal.
+
+Includes:
+
+Device profiling (OS, model, battery state)
+
+Heuristic idle baseline estimation
+
+CPU-TDP–based power modeling
+
+Real-time power (W) and energy (J / Wh) estimation
+
+CO₂ impact calculation (0.82 g CO₂ / Wh)
+
+Energy efficiency score
+
+Sustainability insights and comparative “clean baseline” framing
+
+Purpose:
+
+Quantify the environmental cost of software behavior.
+
+Trust & Scoring System
+
+PRISM produces a multi-dimensional trust profile, not a binary label.
+
+Scores include:
+
+Transparency (entropy, obfuscation)
+
+Security (patterns, APIs, strings)
+
+Efficiency (CPU & memory behavior)
+
+Sustainability (network, disk, energy)
+
+Reverse Engineering Quality
+
+Energy / Green Impact
+
+All scores are:
+
+weighted
+
+capped
+
+and explainable
+
+Final output:
+
+overall trust score
+
+qualitative rating
+
+human-readable reasoning
+
+Directory & File Sweep Mode
+
+Fast scanning of folders (e.g., Downloads)
+
+Entropy + keyword heuristics
+
+Early warning for suspicious artifacts
+
+Designed as a triage pass, not deep analysis
+
+Reports & Data Export
+
+Full analysis export as JSON
+
+Raw metrics export for external research
+
+Designed for:
+
+reproducibility
+
+auditability
+
+downstream processing
+
+Technology Stack
+
+Language: Python 3.8+
+
+GUI: tkinter
+
+System Metrics: psutil
+
+Math & Visualization: numpy, matplotlib
+
+Core Utilities: hashlib, struct, platform, subprocess, pathlib
+
+tkinter ships with most Python builds.
+Some Linux distributions require python3-tk.
+
+Installation
+# Recommended: virtual environment
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
-# Install required packages
 pip install psutil matplotlib numpy
-```
 
-On **Linux** you might need:
-```bash
+Linux (if Tk is missing):
+
 sudo apt-get install python3-tk
-```
-
----
-
-## 🚀 Running PRISM
-
-```bash
+Running PRISM
 python Prism.py
-```
 
-The app launches a desktop GUI with multiple tabs:
-- **Overview** — summary of file info, disassembly counts, CFG metrics, crypto detection.
-- **Disassembly** — sample instructions (address/opcode/mnemonic/operands).
-- **Control Flow** — functions + basic blocks sample details.
-- **Detailed Analysis** — trust score formula and breakdown, findings, and recommendations.
-- **Process Monitor** — live high‑risk process list with auto‑refresh.
-- **Directory Scanner** — scan a folder (e.g., Downloads) for suspicious files.
-- **Resource Metrics** — 2×2 live graphs for CPU/Mem/Net/Disk.
-- **Energy/Green** — real‑time power, theoretical clean system comparison, CO₂ banner, insights.
+The GUI launches with multiple analytical tabs:
 
----
+Overview — file summary, entropy, CFG metrics, crypto indicators
 
-## 📝 How It Works (High Level)
+Disassembly — sampled decoded instructions
 
-1. **Static Analysis**
-   - Reads the target file bytes and computes **MD5/SHA‑256**.
-   - Extracts readable **strings** and flags suspicious keywords.
-   - Computes **Shannon entropy** to infer obfuscation or packing.
-   - Heuristically detects dangerous **API imports** embedded in the binary.
+Control Flow — function & basic-block summaries
 
-2. **Binary Format & RE**
-   - Identifies **PE/ELF** and architecture via header parsing.
-   - Performs fast **x86/x64 disassembly** (limited opcode table) for the first ~2KB.
-   - Builds a **CFG** by detecting leaders, successors, and basic blocks; approximates functions.
+Detailed Analysis — trust score breakdown and reasoning
 
-3. **Runtime Metrics & Energy**
-   - Uses `psutil` for **CPU/memory/network/disk** sampling.
-   - Estimates **power** using idle baseline + CPU‑TDP scaling, aggregates **energy (J)**, and converts to **CO₂ (g)** using 0.82 g/Wh.
+Process Monitor — live high-risk processes
 
-4. **Trust Scoring**
-   - Computes weighted scores for **Transparency, Security, Efficiency, Sustainability, RE Quality, Energy/Green**, and an **Overall rating**.
+Directory Scanner — fast suspicious file sweep
 
----
+Resource Metrics — CPU / memory / network / disk graphs
 
-## 📷 Screenshots (placeholders)
+Energy / Green — power, efficiency, CO₂ insights
 
-Add screenshots to help users navigate the UI:
-- `docs/overview.png`
-- `docs/disassembly.png`
-- `docs/energy.png`
+How PRISM Works (Condensed Flow)
 
-> Create a `docs/` folder and drop images; then update this section.
+Static Read
+File bytes are read safely; hashes and entropy computed.
 
----
+Structural Inference
+Format detection, disassembly, and CFG synthesis.
 
-## ⚙️ Configuration & Tuning
+Behavioral Context
+Live system metrics and process relationships observed.
 
-- **CPU_TDP_WATTS**: Default `65` W. Tune based on your hardware for better power estimates.
-- **Energy Baseline**: Derived heuristically from battery state; override logic if needed.
-- **Performance Mode**: The GUI throttles updates and tab‑scoped monitoring to prevent lag.
-- **Limits**: Disassembly length ~2000 bytes; process list capped (top 50) for responsiveness.
+Energy Modeling
+Power and CO₂ estimated relative to a clean baseline.
 
----
+Trust Synthesis
+Weighted, explainable scoring across all dimensions.
 
-## 🧪 Quick Test
+Design Boundaries & Limitations
 
-1. Launch PRISM.
-2. Click **📂 Load Binary** and choose a small PE/ELF or any binary data file.
-3. Click **🔬 Analyze** and explore the tabs.
-4. Try **🗂️ Directory Scanner** on your `Downloads`.
-5. Use **📊 Generate Report** to save a JSON report.
+Disassembly covers a limited opcode subset
 
----
+CFG and function detection are approximate
 
-## 📎 Output Files
+Energy estimates are heuristic, not sensor-grade
 
-- **Report JSON**: Full snapshot of file analysis + metrics + trust scores.
-- **Raw Analysis JSON**: Export only analysis data.
+Import detection is string-based
 
----
+Packed / encrypted samples may evade deep inspection
 
-## 🔒 Security & Ethics
+These constraints are intentional trade-offs for safety, speed, and clarity.
 
-- This is a **heuristic** tool; results may include **false positives/negatives**.
-- Do **not** rely solely on PRISM to label software as malicious.
-- Always validate with professional tooling and follow local laws & ethical guidelines.
+Ethics & Responsible Use
 
----
+PRISM is a heuristic transparency tool.
 
-## 🧱 Limitations
+It may produce false positives or negatives
 
-- Disassembler covers a limited subset of x86/x64 opcodes.
-- CFG/function detection is approximate.
-- Energy/CO₂ estimates are **heuristics**, not hardware sensor readings.
-- Import detection is string‑based; packed/encrypted samples may evade detection.
+It should not be the sole authority for malware labeling
 
----
+Always validate findings with professional tooling
 
-## 🗺️ Roadmap Ideas
+Use responsibly and within legal boundaries
 
-- Expand opcode coverage & operand decoding.
-- Visual CFG (graph rendering).
-- Plugin system for detectors (YARA, signature DBs).
-- Enhanced PE/ELF parsers (sections, imports/exports tables).
-- Cross‑platform packaging (PyInstaller).
+Roadmap (Indicative)
 
----
+Expanded opcode coverage
 
-## 🛠 Troubleshooting
+Visual CFG rendering
 
-- **No GUI / Tk errors**: Install `python3-tk` (Linux) or use an official Python build with Tk.
-- **High CPU usage**: Switch tabs away from Process Monitor; reduce auto‑update intervals.
-- **Permission errors**: Some processes/paths require elevated permissions; the app handles and skips.
+Plugin system (YARA, signature engines)
 
----
+Deeper PE / ELF parsing
 
-## 📄 License
+Cross-platform packaging (PyInstaller)
 
-MIT License — see `LICENSE` (add one if missing).
+Final Note
 
----
+PRISM is not an antivirus.
+It is not a sandbox.
 
-## 👤 Maintainer
-
-**Kushal Chowdary Malempati**
-
-> For issues or feature requests, please open a GitHub issue.
-
----
-
-## 📚 Acknowledgements
-
-- Inspired by reverse engineering tooling and green computing research. Conversion factor of **0.82 g/Wh** used as a global‑average grid intensity heuristic.
-
+It is an instrument — built to make software behavior legible,
+its structure inspectable,
+and its cost measurable.
